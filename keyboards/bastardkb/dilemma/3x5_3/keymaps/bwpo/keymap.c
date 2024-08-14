@@ -170,3 +170,63 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 // clang-format on
 #endif // ENCODER_MAP_ENABLE
 
+// cool custom startup animation
+void matrix_init_user(void) { // Runs boot tasks for keyboard
+	rgblight_enable();
+	rgblight_sethsv(0,255,255);
+	rgblight_mode(3);
+};
+
+#ifdef RGB_MATRIX_ENABLE
+// Layer state indicator
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    if (host_keyboard_led_state().caps_lock) {
+        for (int i = 0; i <= LED_FLAG_ALL; i++) {
+            if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_MODIFIER)) {
+                rgb_matrix_set_color(i, MIN(rgb_matrix_get_val() + 76, 255), 0x00, 0x00);
+            }
+        }
+    }
+
+    uint8_t layer = get_highest_layer(layer_state);
+    if (layer > 0) {
+        HSV hsv = rgb_matrix_get_hsv();
+        switch (get_highest_layer(layer_state)) {
+            case 1:
+                hsv = (HSV){HSV_BLUE};
+                break;
+            case 2:
+                hsv = (HSV){HSV_AZURE};
+                break;
+            case 3:
+                hsv = (HSV){HSV_ORANGE};
+                break;
+            case 4:
+                hsv = (HSV){HSV_GREEN};
+                break;
+            case 5:
+                hsv = (HSV){HSV_TEAL};
+                break;
+            case 6:
+                hsv = (HSV){HSV_PURPLE};
+                break;
+            case 7:
+            default:
+                hsv = (HSV){HSV_RED};
+                break;
+        };
+
+        if (hsv.v > rgb_matrix_get_val()) {
+            hsv.v = MIN(rgb_matrix_get_val() + 22, 255);
+        }
+        RGB rgb = hsv_to_rgb(hsv);
+
+        for (uint8_t i = led_min; i < led_max; i++) {
+            if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_UNDERGLOW)) {
+                rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+            }
+        }
+    }
+    return false;
+};
+#endif // RGB_MATRIX_ENABLE
