@@ -175,7 +175,6 @@ void matrix_init_user(void) { // Runs boot tasks for keyboard
     rgblight_enable_noeeprom();
     rgblight_mode_noeeprom(RGBLIGHT_MODE_BAND_VAL);
     rgblight_set_speed(200);
-    rgblight_setrgb(0, 255, 66);
 };
 
 #ifdef RGB_MATRIX_ENABLE
