@@ -172,9 +172,9 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 // cool custom startup animation
 void matrix_init_user(void) { // Runs boot tasks for keyboard
-    void rgb_matrix_update_pwm_buffers(void);
-    rgb_matrix_set_color_all(RGB_RED);
-    rgb_matrix_update_pwm_buffers();
+    rgblight_enable_noeeprom();
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_BAND_VAL);
+    rgblight_setrgb(#00ff42);
 };
 
 #ifdef RGB_MATRIX_ENABLE
