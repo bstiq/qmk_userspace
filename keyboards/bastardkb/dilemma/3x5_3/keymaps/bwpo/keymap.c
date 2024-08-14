@@ -172,9 +172,9 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 // cool custom startup animation
 void matrix_init_user(void) { // Runs boot tasks for keyboard
-	rgblight_enable();
-	rgblight_sethsv(0,255,255);
-	rgblight_mode(3);
+    void rgb_matrix_update_pwm_buffers(void);
+    rgb_matrix_set_color_all(RGB_RED);
+    rgb_matrix_update_pwm_buffers();
 };
 
 #ifdef RGB_MATRIX_ENABLE
@@ -222,12 +222,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         RGB rgb = hsv_to_rgb(hsv);
 
         for (uint8_t i = led_min; i < led_max; i++) {
-           // if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_UNDERGLOW)) {
-                rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
-          //  }
-           // if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_KEYLIGHT)) {
-          //      rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
-         //   }
+          rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
         }
     }
     return false;
