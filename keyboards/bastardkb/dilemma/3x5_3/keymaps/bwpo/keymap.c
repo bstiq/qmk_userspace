@@ -181,7 +181,7 @@ void matrix_init_user(void) { // Runs boot tasks for keyboard
 // Layer state indicator
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     if (host_keyboard_led_state().caps_lock) {
-        for (int i = 0; i <= LED_FLAG_ALL; i++) {
+        for (int i = 0; i < LED_FLAG_ALL; i++) {
             if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_MODIFIER)) {
                 rgb_matrix_set_color(i, MIN(rgb_matrix_get_val() + 76, 255), 0x00, 0x00);
             }
