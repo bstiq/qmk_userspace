@@ -174,7 +174,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 void matrix_init_user(void) { // Runs boot tasks for keyboard
     rgblight_enable_noeeprom();
     rgblight_mode_noeeprom(RGBLIGHT_MODE_BAND_VAL);
-    rgblight_setrgb(#00ff42);
+    rgblight_set_speed(200);
+    rgblight_setrgb(0, 255, 66);
 };
 
 #ifdef RGB_MATRIX_ENABLE
