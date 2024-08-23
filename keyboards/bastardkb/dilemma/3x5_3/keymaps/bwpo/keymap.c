@@ -248,14 +248,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case QK_REG:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("Regards,\nQuentin\nBastard Keyboards");
+            SEND_STRING_DELAY_DELAY("Regards,\nQuentin\nBastard Keyboards",5);
         } 
         break;
     case QK_HELP:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("I hope this helps, let me know if there's anything else!");
+            SEND_STRING_DELAY("I hope this helps, let me know if there's anything else!",5);
         } 
         break;
     }
