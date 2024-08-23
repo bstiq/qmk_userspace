@@ -28,6 +28,11 @@ enum dilemma_keymap_layers {
     LAYER_SYMBOLS,
 };
 
+enum custom_keycodes {
+    QK_REG = SAFE_RANGE,
+    QK_HELP = SAFE_RANGE,
+};
+
 // Automatically enable sniping-mode on the pointer layer.
 // #define DILEMMA_AUTO_SNIPING_ON_LAYER LAYER_POINTER
 
@@ -119,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     QK_BOOT,  EE_CLR, XXXXXXX, DPI_MOD, S_D_MOD, S_D_MOD, DPI_MOD, XXXXXXX,  EE_CLR, QK_BOOT,
     KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX, XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI,
     _______, DRGSCRL, SNIPING, KC_BTN3, XXXXXXX, XXXXXXX, KC_BTN3, SNIPING, DRGSCRL, _______,
-                      KC_BTN3, KC_BTN2, KC_BTN1, KC_BTN1, KC_BTN2, KC_BTN3
+                      KC_BTN3, KC_BTN2, KC_BTN1, Q_REG, Q_HELP, _______
   ),
 
 /**
@@ -132,8 +137,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_NUMERAL] = LAYOUT_split_3x5_3(
     KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     KC_SCLN,    KC_4,    KC_5,    KC_6,  KC_EQL, XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI,
-     KC_DOT,    KC_1,    KC_2,    KC_3, KC_MINS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                       KC_DOT, KC_MINS,    KC_0, XXXXXXX, _______, XXXXXXX
+    KC_TILD,    KC_1,    KC_2,    KC_3, KC_MINS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                       KC_BSLS, KC_MINS,    KC_0, XXXXXXX, _______, XXXXXXX
   ),
 
 /**
@@ -238,3 +243,21 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     return false;
 };
 #endif // RGB_MATRIX_ENABLE
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case Q_REG:
+        if (record->event.pressed) {
+            // when keycode QMKBEST is pressed
+            SEND_STRING("Regards,\nQuentin\nBastard Keyboards");
+        } 
+        break;
+    case Q_HELP:
+        if (record->event.pressed) {
+            // when keycode QMKBEST is pressed
+            SEND_STRING("I hope this helps, let me know if there's anything else!");
+        } 
+        break;
+    }
+    return true;
+};
