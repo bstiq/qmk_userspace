@@ -30,7 +30,7 @@ enum dilemma_keymap_layers {
 
 enum custom_keycodes {
     QK_REG = SAFE_RANGE,
-    QK_HELP = SAFE_RANGE,
+    QK_HELP
 };
 
 // Automatically enable sniping-mode on the pointer layer.
