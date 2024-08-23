@@ -246,13 +246,13 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-    case Q_REG:
+    case QK_REG:
         if (record->event.pressed) {
             // when keycode QMKBEST is pressed
             SEND_STRING("Regards,\nQuentin\nBastard Keyboards");
         } 
         break;
-    case Q_HELP:
+    case QK_HELP:
         if (record->event.pressed) {
             // when keycode QMKBEST is pressed
             SEND_STRING("I hope this helps, let me know if there's anything else!");
