@@ -75,8 +75,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 /** Convenience row shorthands. */
 #define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define ______________HOME_ROW_GACS_L______________ KC_LGUI, KC_LALT, KC_LSFT, KC_CTRL, XXXXXXX
-#define ______________HOME_ROW_GACS_R______________ XXXXXXX, KC_CTRL, KC_LSFT, KC_LALT, KC_LGUI
+#define ______________HOME_ROW_GACS_L______________ KC_LGUI, KC_LALT, KC_LSFT, KC_CLTL, XXXXXXX
+#define ______________HOME_ROW_GACS_R______________ XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI
 
 /*
  * Layers used on the Charybdis Nano.
