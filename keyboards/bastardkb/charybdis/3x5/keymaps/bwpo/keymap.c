@@ -30,6 +30,11 @@ enum charybdis_keymap_layers {
     LAYER_SYMBOLS,
 };
 
+enum custom_keycodes {
+    QK_REG = SAFE_RANGE,
+    QK_HELP
+};
+
 // Automatically enable sniping-mode on the pointer layer.
 #define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
 
@@ -125,7 +130,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  * base layer to avoid having to layer change mid edit and to enable auto-repeat.
  */
 #define LAYOUT_LAYER_NAVIGATION                                                               \
-    _______________DEAD_HALF_ROW_______________, _______________DEAD_HALF_ROW_______________, \
+    XXXXXXX, XXXXXXX, QK_HELP, QK_REG, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
     ______________HOME_ROW_GACS_L______________, KC_BSPC, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
     _______________DEAD_HALF_ROW_______________,  KC_DEL, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, \
                       XXXXXXX, _______, XXXXXXX,  KC_ENT, KC_ENT
@@ -256,3 +261,19 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // rgb_matrix.c.
 void rgb_matrix_update_pwm_buffers(void);
 #endif
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case QK_REG:
+        if (record->event.pressed) {
+            SEND_STRING_DELAY("Regards,\nQ. Lebastard\nBastard Keyboards",5);
+        } 
+        break;
+    case QK_HELP:
+        if (record->event.pressed) {
+            SEND_STRING_DELAY("I hope this helps, let me know if there's anything else!",5);
+        } 
+        break;
+    }
+    return true;
+};
