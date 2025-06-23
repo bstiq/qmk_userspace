@@ -3,7 +3,5 @@
     "build_targets": [
         ["bastardkb/dilemma/3x5_3", "bwpo"],
         ["bastardkb/charybdis/3x5", "bwpo"]
-        ["bastardkb/dilemma/3x5_3_procyon", "vendor"],
-        ["bastardkb/dilemma/4x6_4_procyon", "vendor"]
     ]
 }
