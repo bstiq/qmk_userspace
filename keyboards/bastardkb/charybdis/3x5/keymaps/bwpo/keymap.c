@@ -32,8 +32,7 @@ enum charybdis_keymap_layers {
 
 enum custom_keycodes {
     QK_REG = SAFE_RANGE,
-    QK_HELP,
-    QK_DOTMAJ
+    QK_HELP
 };
 
 // Automatically enable sniping-mode on the pointer layer.
@@ -69,7 +68,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 // clang-format off
 /** \brief QWERTY layout (3 rows, 10 columns). */
 #define LAYOUT_LAYER_BASE                                                                     \
-       KC_B,    KC_W,    KC_P,    KC_O,    KC_QUOT,    QK_DOTMAJ,    KC_V,    KC_D,    KC_L,    KC_J, \
+       KC_B,    KC_W,    KC_P,    KC_O,    KC_QUOT,    KC_DOT,    KC_V,    KC_D,    KC_L,    KC_J, \
        KC_A,    KC_U,    KC_I,    KC_E,    KC_COMM,    KC_C,    KC_T,    KC_S,    KC_R, KC_N, \
        KC_Z,    KC_Y,    KC_X,    KC_SLSH,    KC_K,    KC_M,    KC_Q, KC_G,  KC_H, KC_F, \
                       ESC_MED, SPC_NAV, TAB_FUN, ENT_SYM, SPC_NUM
@@ -131,7 +130,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  * base layer to avoid having to layer change mid edit and to enable auto-repeat.
  */
 #define LAYOUT_LAYER_NAVIGATION                                                               \
-    XXXXXXX, XXXXXXX, QK_HELP, QK_REG, XXXXXXX, KC_DOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    XXXXXXX, XXXXXXX, QK_HELP, QK_REG, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
     ______________HOME_ROW_GACS_L______________, KC_BSPC, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
     _______________DEAD_HALF_ROW_______________,  KC_DEL, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, \
                       XXXXXXX, _______, XXXXXXX,  KC_ENT, KC_ENT
@@ -144,7 +143,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  * `KC_DOT` is duplicated from the base layer.
  */
 #define LAYOUT_LAYER_NUMERAL                                                                  \
-    KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC, KC_DOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC, _______________DEAD_HALF_ROW_______________, \
     KC_SCLN,    KC_4,    KC_5,    KC_6,  KC_EQL, ______________HOME_ROW_GACS_R______________, \
     KC_GRV,     KC_1,    KC_2,    KC_3, KC_BSLS, _______________DEAD_HALF_ROW_______________, \
                        KC_DOT,    KC_0, KC_MINS, XXXXXXX, _______
@@ -276,12 +275,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } 
         break;
     }
-    case QK_DOTMAJ:
-        if (record->event.pressed) {
-            tap_code(KC_DOT);
-            tap_code(KC_SPACE);
-            tap_code(OS_LSFT);
-        } 
-        break;
     return true;
 };
