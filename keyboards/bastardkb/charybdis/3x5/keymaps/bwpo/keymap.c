@@ -275,6 +275,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING_DELAY("I hope this helps, let me know if there's anything else!",5);
         } 
         break;
+    }
     case QK_DOTMAJ:
         if (record->event.pressed) {
             tap_code(KC_DOT);
@@ -282,7 +283,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             OSM(MOD_LSFT);
         } 
         break;
-        
-    }
     return true;
 };
