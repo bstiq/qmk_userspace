@@ -280,7 +280,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
             tap_code(KC_DOT);
             tap_code(KC_SPACE);
-            OSM(MOD_LSFT);
+            tap_code(OS_LSFT);
         } 
         break;
     return true;
